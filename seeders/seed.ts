@@ -9,6 +9,8 @@ import './blog.seeder.js'
 import './journey.seeder.js'
 import './certificates.seeder.js'
 import './mentorship.seeder.js'
+import './singletons.seeder.js'
+import './images.seeder.js'
 
 const client = getClient()
 const args = process.argv.slice(2)

@@ -4,7 +4,7 @@ import {resolve} from 'path'
 import type {SanityClient} from '@sanity/client'
 
 const dataPath = resolve(__dirname, '../../src/data/resources.json')
-let _data: any[] = []; try { _data = JSON.parse(readFileSync(dataPath, 'utf8')) } catch {}; const data = _data
+let _data: any[] = []; try { _data = JSON.parse(readFileSync(dataPath, 'utf8')) } catch {}; const resources = _data
 
 registerSeeder({
   name: 'resources',
