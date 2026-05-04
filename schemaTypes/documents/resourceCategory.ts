@@ -4,12 +4,13 @@ export default defineType({
   name: 'resourceCategory',
   title: 'Resource Category',
   type: 'document',
+  description: 'A curated category of external links with its own detail page on /resources/{slug} (e.g. Interview Prep, Newsletters).',
   fields: [
     defineField({name: 'title', title: 'Title', type: 'string', validation: (r) => r.required()}),
     defineField({name: 'slug', title: 'Slug', type: 'slug', options: {source: 'title'}, validation: (r) => r.required()}),
-    defineField({name: 'sectionLabel', title: 'Section Label', type: 'string', initialValue: 'resources'}),
-    defineField({name: 'gradientFrom', title: 'Gradient From', type: 'string', description: 'Hex color e.g. #4285F4'}),
-    defineField({name: 'gradientTo', title: 'Gradient To', type: 'string', description: 'Hex color e.g. #34A853'}),
+    defineField({name: 'subtitle', title: 'Subtitle', type: 'string', description: 'Short description shown under the title on the hub card.'}),
+    defineField({name: 'thumbnail', title: 'Thumbnail', type: 'image', validation: (r) => r.required()}),
+    defineField({name: 'sectionLabel', title: 'Section Label', type: 'string', description: 'Heading shown above the list on the detail page.', initialValue: 'resources'}),
     defineField({
       name: 'items',
       title: 'Items',
@@ -26,7 +27,7 @@ export default defineType({
     }),
     defineField({
       name: 'sections',
-      title: 'Sections (for multi-section resources)',
+      title: 'Sections (for multi-section categories)',
       type: 'array',
       of: [defineArrayMember({
         type: 'object',
@@ -50,8 +51,6 @@ export default defineType({
         preview: {select: {title: 'label'}},
       })],
     }),
-    defineField({name: 'order', title: 'Order', type: 'number'}),
   ],
-  orderings: [{title: 'Order', name: 'order', by: [{field: 'order', direction: 'asc'}]}],
-  preview: {select: {title: 'title'}},
+  preview: {select: {title: 'title', subtitle: 'subtitle', media: 'thumbnail'}},
 })
