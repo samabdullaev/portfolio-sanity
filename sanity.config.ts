@@ -32,6 +32,7 @@ export default defineConfig({
             S.divider(),
             // Collections
             S.documentTypeListItem('project').title('Projects'),
+            S.documentTypeListItem('projectCategory').title('Project Categories'),
             S.documentTypeListItem('blogSeries').title('Blog Series'),
             S.documentTypeListItem('blogArticle').title('Blog Articles'),
             S.documentTypeListItem('resource').title('Resources'),
@@ -42,6 +43,7 @@ export default defineConfig({
             S.documentTypeListItem('travelDestination').title('Travel'),
             S.documentTypeListItem('yearlyReview').title('Yearly Reviews'),
             S.documentTypeListItem('journeyUpdate').title('Journey Updates'),
+            S.documentTypeListItem('journeyYear').title('Journey Years'),
             S.documentTypeListItem('mentorshipArticle').title('Mentorship'),
           ]),
     }),

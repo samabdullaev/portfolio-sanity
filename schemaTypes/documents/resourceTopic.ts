@@ -13,6 +13,20 @@ export default defineType({
       validation: (r) => r.required(),
       description: 'e.g. "Tools", "Apps", "Playbooks"',
     }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {source: 'title'},
+      validation: (r) => r.required(),
+      description: 'Used in URL filter parameter, e.g. /resources?topic=tools',
+    }),
+    defineField({
+      name: 'logo',
+      title: 'Logo',
+      type: 'image',
+      description: 'Square thumbnail shown on the filter card on the Resources hub.',
+    }),
     defineField({name: 'order', title: 'Order', type: 'number'}),
     defineField({
       name: 'items',
@@ -23,5 +37,5 @@ export default defineType({
     }),
   ],
   orderings: [{title: 'Order', name: 'order', by: [{field: 'order', direction: 'asc'}]}],
-  preview: {select: {title: 'title'}},
+  preview: {select: {title: 'title', media: 'logo'}},
 })
