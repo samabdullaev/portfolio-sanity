@@ -15,12 +15,12 @@ import yearlyReview from './documents/yearlyReview'
 import journeyUpdate from './documents/journeyUpdate'
 import journeyYear from './documents/journeyYear'
 import mentorshipArticle from './documents/mentorshipArticle'
-import galleryItem from './objects/galleryItem'
+import galleryVideo from './objects/galleryVideo'
 import socialLink from './objects/socialLink'
 
 export const schemaTypes = [
   homePage, aboutPage, siteSettings,
   project, projectCategory, blogSeries, blogArticle, resource, resourceCategory, resourceTopic, certificate, certificateIssuer,
   travelDestination, yearlyReview, journeyUpdate, journeyYear, mentorshipArticle,
-  galleryItem, socialLink,
+  galleryVideo, socialLink,
 ]
