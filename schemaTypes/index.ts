@@ -8,6 +8,7 @@ import resource from './documents/resource'
 import resourceCategory from './documents/resourceCategory'
 import resourceTopic from './documents/resourceTopic'
 import certificate from './documents/certificate'
+import certificateIssuer from './documents/certificateIssuer'
 import travelDestination from './documents/travelDestination'
 import yearlyReview from './documents/yearlyReview'
 import journeyUpdate from './documents/journeyUpdate'
@@ -17,7 +18,7 @@ import socialLink from './objects/socialLink'
 
 export const schemaTypes = [
   homePage, aboutPage, siteSettings,
-  project, blogSeries, blogArticle, resource, resourceCategory, resourceTopic, certificate,
+  project, blogSeries, blogArticle, resource, resourceCategory, resourceTopic, certificate, certificateIssuer,
   travelDestination, yearlyReview, journeyUpdate, mentorshipArticle,
   galleryItem, socialLink,
 ]

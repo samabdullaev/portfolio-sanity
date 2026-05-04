@@ -38,6 +38,7 @@ export default defineConfig({
             S.documentTypeListItem('resourceCategory').title('Resource Categories'),
             S.documentTypeListItem('resourceTopic').title('Resource Topics'),
             S.documentTypeListItem('certificate').title('Certificates'),
+            S.documentTypeListItem('certificateIssuer').title('Certificate Issuers'),
             S.documentTypeListItem('travelDestination').title('Travel'),
             S.documentTypeListItem('yearlyReview').title('Yearly Reviews'),
             S.documentTypeListItem('journeyUpdate').title('Journey Updates'),

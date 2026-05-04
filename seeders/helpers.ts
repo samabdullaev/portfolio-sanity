@@ -30,10 +30,14 @@ export function key(): string {
 export async function uploadImage(client: SanityClient, filePath: string): Promise<string> {
   const absolutePath = resolve(__dirname, 'assets', filePath)
   const buffer = readFileSync(absolutePath)
-  const ext = filePath.split('.').pop() || 'png'
+  const ext = (filePath.split('.').pop() || 'png').toLowerCase()
+  const contentType =
+    ext === 'jpg' ? 'image/jpeg' :
+    ext === 'svg' ? 'image/svg+xml' :
+    `image/${ext}`
   const asset = await client.assets.upload('image', buffer, {
     filename: filePath.split('/').pop() || 'image.' + ext,
-    contentType: `image/${ext === 'jpg' ? 'jpeg' : ext}`,
+    contentType,
   })
   return asset._id
 }
