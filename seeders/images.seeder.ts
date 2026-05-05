@@ -95,6 +95,7 @@ const journeyImages: [string, string][] = [
   ['journey-2026-01', 'assets/journey/Month_28_-_January_2026__Resilience.png'],
   ['journey-2026-02', 'assets/journey/Month_29_-_February_2026__Interviews.png'],
   ['journey-2026-03', 'assets/journey/Month_30_-_March_2026__Networking.png'],
+  ['journey-2026-04', 'assets/journey/Month_31_-_April_2026__Iteration.png'],
 ]
 
 // Certificates: image field

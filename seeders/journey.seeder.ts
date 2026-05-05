@@ -3,6 +3,12 @@ import type {SanityClient} from '@sanity/client'
 
 const entries = [
   {
+    "title": "April 2026: Iteration",
+    "url": "https://www.linkedin.com/pulse/april-2026-iteration-sam-abdullaev-xjcre",
+    "month": 4,
+    "year": 2026
+  },
+  {
     "title": "March 2026: Networking",
     "url": "https://www.linkedin.com/pulse/march-2026-networking-sam-abdullaev-6djfe",
     "month": 3,
