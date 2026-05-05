@@ -13,16 +13,40 @@ export default defineType({
     defineField({name: 'features', title: 'Features', type: 'array', of: [{type: 'string'}]}),
     defineField({name: 'techStack', title: 'Tech Stack', type: 'array', of: [{type: 'string'}]}),
     defineField({
+      name: 'thumbnail',
+      title: 'Thumbnail',
+      type: 'image',
+      options: {hotspot: true},
+      fields: [
+        defineField({
+          name: 'caption',
+          title: 'Caption',
+          type: 'string',
+          description: 'Shown as the title in the full-screen modal.',
+        }),
+      ],
+    }),
+    defineField({
       name: 'gallery',
       title: 'Gallery',
       type: 'array',
       of: [
-        {type: 'image', options: {hotspot: true}},
+        {
+          type: 'image',
+          options: {hotspot: true},
+          fields: [
+            defineField({
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+              description: 'Shown as the title in the full-screen modal.',
+            }),
+          ],
+        },
         {type: 'galleryVideo'},
       ],
       description: 'Mix of images and videos shown after the thumbnail on the detail page.',
     }),
-    defineField({name: 'thumbnail', title: 'Thumbnail', type: 'image', options: {hotspot: true}}),
     defineField({name: 'liveUrl', title: 'Live URL', type: 'url'}),
     defineField({name: 'githubUrl', title: 'GitHub URL', type: 'url'}),
     defineField({name: 'order', title: 'Order', type: 'number'}),

@@ -13,14 +13,14 @@ export default defineType({
       validation: (r) => r.required(),
     }),
     defineField({
-      name: 'label',
-      title: 'Label',
+      name: 'caption',
+      title: 'Caption',
       type: 'string',
-      description: 'Optional caption (e.g. "Hackathon demo")',
+      description: 'Shown as the title in the full-screen modal.',
     }),
   ],
   preview: {
-    select: {title: 'label', subtitle: 'videoUrl'},
+    select: {title: 'caption', subtitle: 'videoUrl'},
     prepare({title, subtitle}) {
       return {title: title || 'Video', subtitle}
     },
