@@ -4,6 +4,14 @@ export default defineType({
   name: 'homePage',
   title: 'Home Page',
   type: 'document',
+  preview: {
+    select: {title: 'name', subtitle: 'title', media: 'profileImage'},
+    prepare: ({title, subtitle, media}) => ({
+      title: title || 'Home Page',
+      subtitle: subtitle || 'Hero, socials, and CTA',
+      media,
+    }),
+  },
   fields: [
     defineField({name: 'name', title: 'Name', type: 'string', validation: (r) => r.required()}),
     defineField({name: 'title', title: 'Title', type: 'string', validation: (r) => r.required()}),
