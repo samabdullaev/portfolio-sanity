@@ -8,12 +8,38 @@ export default defineType({
     defineField({name: 'title', title: 'Title', type: 'string', validation: (r) => r.required()}),
     defineField({name: 'slug', title: 'Slug', type: 'slug', options: {source: 'title'}, validation: (r) => r.required()}),
     defineField({name: 'flag', title: 'Flag Emoji', type: 'string'}),
-    defineField({name: 'thumbnail', title: 'Thumbnail', type: 'image', options: {hotspot: true}}),
+    defineField({
+      name: 'thumbnail',
+      title: 'Thumbnail',
+      type: 'image',
+      options: {hotspot: true},
+      fields: [
+        defineField({
+          name: 'caption',
+          title: 'Caption',
+          type: 'string',
+          description: 'Shown as the title in the full-screen modal.',
+        }),
+      ],
+    }),
     defineField({
       name: 'gallery',
       title: 'Gallery',
       type: 'array',
-      of: [defineArrayMember({type: 'image', options: {hotspot: true}})],
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: {hotspot: true},
+          fields: [
+            defineField({
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+              description: 'Shown as the title in the full-screen modal.',
+            }),
+          ],
+        }),
+      ],
       description: 'Extra images shown on the destination detail page (after the thumbnail).',
     }),
     defineField({
