@@ -12,15 +12,36 @@ export default defineType({
       title: 'Thumbnail',
       type: 'image',
       options: {hotspot: true},
-      description: 'Cover image shown on the Reviews hub card.',
+      description: 'Cover image shown on the Reviews hub card; also leads the detail-page gallery.',
+      fields: [
+        defineField({
+          name: 'caption',
+          title: 'Caption',
+          type: 'string',
+          description: 'Shown as the title in the full-screen modal.',
+        }),
+      ],
       validation: (r) => r.required(),
     }),
     defineField({
       name: 'gallery',
       title: 'Gallery',
       type: 'array',
-      of: [defineArrayMember({type: 'image', options: {hotspot: true}})],
-      description: 'Images shown on the year detail page (first image is the main view).',
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: {hotspot: true},
+          fields: [
+            defineField({
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+              description: 'Shown as the title in the full-screen modal.',
+            }),
+          ],
+        }),
+      ],
+      description: 'Extra images shown on the year detail page (after the thumbnail).',
     }),
     defineField({
       name: 'sections',
