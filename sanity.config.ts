@@ -152,13 +152,17 @@ export default defineConfig({
               title: 'Resource Categories',
               icon: BookmarkIcon,
             }),
-            orderableDocumentListDeskItem({
-              S,
-              context,
-              type: 'resource',
-              title: 'All Resources',
-              icon: BookmarkIcon,
-            }),
+            // All Resources is just a flat alphabetical list — actual hub
+            // ordering on the website comes from each Resource Topic's
+            // items[] array, so D&D here would never affect rendering.
+            S.listItem()
+              .title('All Resources')
+              .icon(BookmarkIcon)
+              .child(
+                S.documentTypeList('resource')
+                  .title('All Resources')
+                  .defaultOrdering([{field: 'title', direction: 'asc'}]),
+              ),
 
             // Certificates — sorted by date desc on the flat list.
             orderableDocumentListDeskItem({

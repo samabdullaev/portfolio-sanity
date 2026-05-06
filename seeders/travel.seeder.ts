@@ -121,7 +121,7 @@ const destinations: DestinationSpec[] = [
     },
     placesToTravel: [
       {
-        city: 'Tashkent (Capital & Modern City)',
+        city: 'Tashkent',
         places: [
           'Chorsu Bazaar – traditional market with local crafts and food',
           'Khast Imam Complex – religious and cultural landmark',
@@ -131,7 +131,7 @@ const destinations: DestinationSpec[] = [
         ],
       },
       {
-        city: 'Samarkand (Silk Road Jewel)',
+        city: 'Samarkand',
         places: [
           'Registan Square – iconic madrassas with intricate tilework',
           'Gur-e-Amir Mausoleum – tomb of Timur (Tamerlane)',
@@ -143,7 +143,7 @@ const destinations: DestinationSpec[] = [
         ],
       },
       {
-        city: 'Bukhara (Historic Silk Road City)',
+        city: 'Bukhara',
         places: [
           'Ark Fortress – citadel with museums and panoramic views',
           'Poi Kalyan Minaret & Mosque – iconic minaret and mosque complex',
@@ -152,10 +152,11 @@ const destinations: DestinationSpec[] = [
           'Chor-Minor – charming four-towered madrasa',
           'Bolo Hauz Mosque – wooden-columned mosque',
           'Magoki-Attari Mosque – one of the oldest mosques in Bukhara',
+          'Rabati Malik – ancient caravanserai on the Silk Road',
         ],
       },
       {
-        city: 'Khiva (Walled City & Open-Air Museum)',
+        city: 'Khiva',
         places: [
           'Itchan Kala – UNESCO walled city with preserved madrasas',
           'Kunya-Ark Fortress – historic citadel',
@@ -167,28 +168,76 @@ const destinations: DestinationSpec[] = [
         ],
       },
       {
-        city: 'Fergana Valley & Eastern Uzbekistan',
+        city: 'Fergana',
         places: [
-          'Rishtan – pottery and ceramics village',
-          'Margilan – Yodgorlik Silk Factory and traditional silk bazaar',
-          'Kokand – Khudayar Khan Palace and historic mosques',
-          'Andijan – Babur Museum, local bazaars, and historical sites',
-          'Namangan – Khodja Zayniddin Mausoleum, local markets',
           'Fergana city – regional cultural centers and parks',
+          'Margilan – Yodgorlik Silk Factory and traditional silk bazaar',
+          'Rishtan – pottery and ceramics village',
+          'Kokand – Khudayar Khan Palace and historic mosques',
         ],
       },
       {
-        city: 'Western & Southern Regions',
+        city: 'Andijan',
         places: [
-          'Nukus – Savitsky Museum of Art (avant-garde collection)',
-          'Karakalpakstan – Muynak (Aral Sea ship graveyard)',
-          'Termez – Buddhist and Islamic historical ruins, Fayaz Tepe',
-          'Navoi – Kyzylkum Desert landscapes, mining towns',
-          'Bukhara region – ancient caravanserais like Rabati Malik',
-          'Surkhandarya – mountain villages, Boysun landscapes, and natural springs',
-          'Jizzakh – Sayram Su River and mountain excursions',
-          'Kashkadarya – Kitab Reserve and Zarafshan Valley',
-          'Syrdarya – historic fortresses, Zarafshan River exploration',
+          'Babur Museum',
+          'Local bazaars and historical sites',
+        ],
+      },
+      {
+        city: 'Namangan',
+        places: [
+          'Khodja Zayniddin Mausoleum',
+          'Local markets',
+        ],
+      },
+      {
+        city: 'Nukus',
+        places: ['Savitsky Museum of Art – avant-garde collection'],
+      },
+      {
+        city: 'Karakalpakstan',
+        places: ['Muynak – Aral Sea ship graveyard'],
+      },
+      {
+        city: 'Termez',
+        places: [
+          'Buddhist and Islamic historical ruins',
+          'Fayaz Tepe – Buddhist archaeological site',
+        ],
+      },
+      {
+        city: 'Navoi',
+        places: [
+          'Kyzylkum Desert landscapes',
+          'Local mining towns',
+        ],
+      },
+      {
+        city: 'Surkhandarya',
+        places: [
+          'Boysun mountain villages',
+          'Natural springs and gorges',
+        ],
+      },
+      {
+        city: 'Jizzakh',
+        places: [
+          'Sayram Su River',
+          'Mountain excursions',
+        ],
+      },
+      {
+        city: 'Kashkadarya',
+        places: [
+          'Kitab State Geological Reserve',
+          'Zarafshan Valley landscapes',
+        ],
+      },
+      {
+        city: 'Syrdarya',
+        places: [
+          'Historic fortresses',
+          'Zarafshan River exploration',
         ],
       },
     ],
@@ -426,11 +475,36 @@ const destinations: DestinationSpec[] = [
     },
     placesToTravel: [
       {
-        city: 'Interlaken & Surroundings',
+        city: 'Interlaken',
         places: [
-          'Lauterbrunnen Valley – scenic walks, waterfalls, and stunning alpine views',
-          'Mürren – car-free mountain village accessible by cable car, ideal for panoramic views and hiking',
-          'Grindelwald – mountain village with trails, cable cars, and alpine charm',
+          'Harder Kulm – panoramic viewpoint above the town, reached by funicular',
+          'Höhematte Park – central meadow where paragliders land',
+          'Lake Thun & Lake Brienz – scenic boat cruises from either side of town',
+          'Old Town – cafes, watch shops, and traditional Swiss architecture',
+        ],
+      },
+      {
+        city: 'Lauterbrunnen',
+        places: [
+          'Lauterbrunnen Valley – scenic walks among the valley\'s 72 waterfalls',
+          'Staubbach Falls – iconic ~300m waterfall above the village',
+          'Trümmelbach Falls – glacial waterfalls cascading inside a mountain',
+        ],
+      },
+      {
+        city: 'Murren',
+        places: [
+          'Mürren – car-free mountain village accessible by cable car',
+          'Schilthorn (Piz Gloria) – revolving restaurant with 360° alpine views',
+          'Allmendhubel funicular – panoramic flower trail in summer',
+        ],
+      },
+      {
+        city: 'Grindelwald',
+        places: [
+          'Grindelwald village – mountain trails, cable cars, and alpine charm',
+          'First Cliff Walk by Tissot – hanging cliff path with viewing platform',
+          'Bachalpsee – alpine lake hike via the First gondola',
         ],
       },
       {
