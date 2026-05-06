@@ -15,7 +15,6 @@ export default defineType({
   fields: [
     defineField({name: 'name', title: 'Name', type: 'string', validation: (r) => r.required()}),
     defineField({name: 'title', title: 'Title', type: 'string', validation: (r) => r.required()}),
-    defineField({name: 'subtitle', title: 'Subtitle', type: 'string'}),
     defineField({name: 'location', title: 'Location', type: 'string'}),
     defineField({name: 'profileImage', title: 'Profile Image', type: 'image', options: {hotspot: true}}),
     defineField({name: 'socials', title: 'Social Links', type: 'array', of: [{type: 'socialLink'}]}),
