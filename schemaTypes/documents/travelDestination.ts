@@ -1,5 +1,6 @@
 import {defineType, defineField, defineArrayMember} from 'sanity'
 import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
+import {CityInput} from '../../components/CityInput'
 
 export default defineType({
   name: 'travelDestination',
@@ -60,7 +61,13 @@ export default defineType({
       of: [defineArrayMember({
         type: 'object',
         fields: [
-          defineField({name: 'city', title: 'City', type: 'string'}),
+          defineField({
+            name: 'city',
+            title: 'City',
+            type: 'string',
+            description: 'Pick from the cities listed in Overview → Cities Visited.',
+            components: {input: CityInput},
+          }),
           defineField({name: 'places', title: 'Places', type: 'array', of: [{type: 'string'}]}),
         ],
         preview: {select: {title: 'city'}},

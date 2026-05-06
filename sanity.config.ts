@@ -31,9 +31,15 @@ export default defineConfig({
       // Projects → Journey → Blog → Mentorship → Travel → Reviews →
       // Resources → Certificates). One divider separates page singletons
       // from content collections; within collections, the icon change
-      // signals each section's start. `context` is passed through to
-      // orderableDocumentListDeskItem so it can wire up the rank-aware
-      // list view.
+      // signals each section's start.
+      //
+      // For "All X" flat list views we use S.documentTypeList (not
+      // documentTypeListItem) so we can attach an explicit
+      // .defaultOrdering — Sanity Studio's default would otherwise be
+      // creation order, which is rarely what we want.
+      //
+      // `context` is passed through to orderableDocumentListDeskItem so
+      // it can wire up the rank-aware list view.
       structure: (S, context) =>
         S.list()
           .title('Content')
@@ -67,15 +73,23 @@ export default defineConfig({
             }),
             S.documentTypeListItem('project').title('All Projects').icon(CodeIcon),
 
-            // Journey
-            orderableDocumentListDeskItem({
-              S,
-              context,
-              type: 'journeyYear',
-              title: 'Journey Years',
-              icon: RocketIcon,
-            }),
-            S.documentTypeListItem('journeyUpdate').title('All Journey Updates').icon(RocketIcon),
+            // Journey — years sort by year desc; updates by date desc.
+            S.listItem()
+              .title('Journey Years')
+              .icon(RocketIcon)
+              .child(
+                S.documentTypeList('journeyYear')
+                  .title('Journey Years')
+                  .defaultOrdering([{field: 'year', direction: 'desc'}]),
+              ),
+            S.listItem()
+              .title('All Journey Updates')
+              .icon(RocketIcon)
+              .child(
+                S.documentTypeList('journeyUpdate')
+                  .title('All Journey Updates')
+                  .defaultOrdering([{field: 'date', direction: 'desc'}]),
+              ),
 
             // Blog
             orderableDocumentListDeskItem({
@@ -85,12 +99,26 @@ export default defineConfig({
               title: 'Blog Series',
               icon: BookIcon,
             }),
-            S.documentTypeListItem('blogArticle').title('All Blog Articles').icon(BookIcon),
+            S.listItem()
+              .title('All Blog Articles')
+              .icon(BookIcon)
+              .child(
+                S.documentTypeList('blogArticle')
+                  .title('All Blog Articles')
+                  .defaultOrdering([{field: 'date', direction: 'desc'}]),
+              ),
 
-            // Mentorship (single-type)
-            S.documentTypeListItem('mentorshipArticle').title('Mentorship').icon(StarIcon),
+            // Mentorship — sorted by publish date desc.
+            S.listItem()
+              .title('Mentorship')
+              .icon(StarIcon)
+              .child(
+                S.documentTypeList('mentorshipArticle')
+                  .title('Mentorship')
+                  .defaultOrdering([{field: 'date', direction: 'desc'}]),
+              ),
 
-            // Travel (single-type)
+            // Travel
             orderableDocumentListDeskItem({
               S,
               context,
@@ -99,8 +127,15 @@ export default defineConfig({
               icon: EarthGlobeIcon,
             }),
 
-            // Yearly Reviews (single-type) — sorted by year desc via schema orderings
-            S.documentTypeListItem('yearlyReview').title('Yearly Reviews').icon(ActivityIcon),
+            // Yearly Reviews — sorted by year desc.
+            S.listItem()
+              .title('Yearly Reviews')
+              .icon(ActivityIcon)
+              .child(
+                S.documentTypeList('yearlyReview')
+                  .title('Yearly Reviews')
+                  .defaultOrdering([{field: 'year', direction: 'desc'}]),
+              ),
 
             // Resources
             orderableDocumentListDeskItem({
@@ -110,7 +145,13 @@ export default defineConfig({
               title: 'Resource Topics',
               icon: BookmarkIcon,
             }),
-            S.documentTypeListItem('resourceCategory').title('Resource Categories').icon(BookmarkIcon),
+            orderableDocumentListDeskItem({
+              S,
+              context,
+              type: 'resourceCategory',
+              title: 'Resource Categories',
+              icon: BookmarkIcon,
+            }),
             orderableDocumentListDeskItem({
               S,
               context,
@@ -119,7 +160,7 @@ export default defineConfig({
               icon: BookmarkIcon,
             }),
 
-            // Certificates
+            // Certificates — sorted by date desc on the flat list.
             orderableDocumentListDeskItem({
               S,
               context,
@@ -127,7 +168,14 @@ export default defineConfig({
               title: 'Certificate Issuers',
               icon: TaskIcon,
             }),
-            S.documentTypeListItem('certificate').title('All Certificates').icon(TaskIcon),
+            S.listItem()
+              .title('All Certificates')
+              .icon(TaskIcon)
+              .child(
+                S.documentTypeList('certificate')
+                  .title('All Certificates')
+                  .defaultOrdering([{field: 'date', direction: 'desc'}]),
+              ),
           ]),
     }),
     visionTool(),
