@@ -1,4 +1,4 @@
-import {registerSeeder, uploadImage, imageRef} from './helpers.js'
+import {registerSeeder, key, uploadImage, imageRef} from './helpers.js'
 import type {SanityClient} from '@sanity/client'
 
 interface BaseSpec {
@@ -19,6 +19,10 @@ interface ExternalSpec extends BaseSpec {
 
 interface CategorySpec extends BaseSpec {
   kind: 'resourceCategory'
+  // Drag-orderable in Studio via @sanity/orderable-document-list. Used by
+  // the "Resource Categories" desk list. The website renders by
+  // topic.items[] order.
+  orderRank: string
 }
 
 type Spec = ExternalSpec | CategorySpec
@@ -61,19 +65,19 @@ const specs: Spec[] = [
   {kind: 'resource', id: 'resource-canva',  slug: 'canva',  title: 'Canva',  subtitle: 'AI Code Generator',       thumbnail: 'assets/resources/Canva.jpg',  externalUrl: 'https://www.canva.com/ai-code-generator/', orderRank: '0023'},
 
   // Categories with detail pages (Playbooks)
-  {kind: 'resourceCategory', id: 'resource-interview-prep',     slug: 'interview-prep',     title: 'Interview Prep',     subtitle: 'NeetCode, GreatFrontEnd, Algochurn, and more',     thumbnail: 'assets/resources/Interview Prep.jpg'},
-  {kind: 'resourceCategory', id: 'resource-system-design',      slug: 'system-design',      title: 'System Design',      subtitle: 'System Design School, Primer, NeetCodeIO',         thumbnail: 'assets/resources/System Design.jpg'},
-  {kind: 'resourceCategory', id: 'resource-career-toolkit',     slug: 'career-toolkit',     title: 'Career Toolkit',     subtitle: 'Interview Warmup, NotebookLM, Cloud Skills Boost', thumbnail: 'assets/resources/Career Toolkit.jpg'},
-  {kind: 'resourceCategory', id: 'resource-video-learning',     slug: 'video-learning',     title: 'Video Learning',     subtitle: 'YouTube, Coursera, Udemy, Scrimba, and more',      thumbnail: 'assets/resources/Video Learning.jpg'},
-  {kind: 'resourceCategory', id: 'resource-programming-guides', slug: 'programming-guides', title: 'Programming Guides', subtitle: 'FreeCodeCamp, W3Schools, GeeksforGeeks, and more', thumbnail: 'assets/resources/Programming Guides.jpg'},
-  {kind: 'resourceCategory', id: 'resource-problem-solving',    slug: 'problem-solving',    title: 'Problem Solving',    subtitle: 'LeetCode, HackerRank, Codewars, CodingBat',        thumbnail: 'assets/resources/Problem Solving.jpg'},
-  {kind: 'resourceCategory', id: 'resource-github',             slug: 'github',             title: 'GitHub',             subtitle: 'Awesome Shadcn UI, Maker Skill Trees',             thumbnail: 'assets/resources/GitHub.jpg'},
+  {kind: 'resourceCategory', id: 'resource-interview-prep',     slug: 'interview-prep',     title: 'Interview Prep',     subtitle: 'NeetCode, GreatFrontEnd, Algochurn, and more',     thumbnail: 'assets/resources/Interview Prep.jpg',     orderRank: '0001'},
+  {kind: 'resourceCategory', id: 'resource-system-design',      slug: 'system-design',      title: 'System Design',      subtitle: 'System Design School, Primer, NeetCodeIO',         thumbnail: 'assets/resources/System Design.jpg',      orderRank: '0002'},
+  {kind: 'resourceCategory', id: 'resource-career-toolkit',     slug: 'career-toolkit',     title: 'Career Toolkit',     subtitle: 'Interview Warmup, NotebookLM, Cloud Skills Boost', thumbnail: 'assets/resources/Career Toolkit.jpg',     orderRank: '0003'},
+  {kind: 'resourceCategory', id: 'resource-video-learning',     slug: 'video-learning',     title: 'Video Learning',     subtitle: 'YouTube, Coursera, Udemy, Scrimba, and more',      thumbnail: 'assets/resources/Video Learning.jpg',     orderRank: '0004'},
+  {kind: 'resourceCategory', id: 'resource-programming-guides', slug: 'programming-guides', title: 'Programming Guides', subtitle: 'FreeCodeCamp, W3Schools, GeeksforGeeks, and more', thumbnail: 'assets/resources/Programming Guides.jpg', orderRank: '0005'},
+  {kind: 'resourceCategory', id: 'resource-problem-solving',    slug: 'problem-solving',    title: 'Problem Solving',    subtitle: 'LeetCode, HackerRank, Codewars, CodingBat',        thumbnail: 'assets/resources/Problem Solving.jpg',    orderRank: '0006'},
+  {kind: 'resourceCategory', id: 'resource-github',             slug: 'github',             title: 'GitHub',             subtitle: 'Awesome Shadcn UI, Maker Skill Trees',             thumbnail: 'assets/resources/GitHub.jpg',             orderRank: '0007'},
 
   // Categories with detail pages (Personal)
-  {kind: 'resourceCategory', id: 'resource-telegram-channels', slug: 'telegram-channels', title: 'Telegram Channels', subtitle: '16 tech and programming channels I follow',             thumbnail: 'assets/resources/Telegram Channels.png'},
-  {kind: 'resourceCategory', id: 'resource-newsletters',       slug: 'newsletters',       title: 'Newsletters',       subtitle: 'Engineering, career, and system design newsletters',    thumbnail: 'assets/resources/Newsletters.jpg'},
-  {kind: 'resourceCategory', id: 'resource-portfolios-i-like', slug: 'portfolios-i-like', title: 'Portfolios I Like', subtitle: '29 developer portfolios and templates for inspiration', thumbnail: 'assets/resources/Portfolios I Like.jpg'},
-  {kind: 'resourceCategory', id: 'resource-demos-showcases',   slug: 'demos-showcases',   title: 'Demos & Showcases', subtitle: 'Tahrirchi, Pythagora 2.0, TopKadr',                     thumbnail: 'assets/resources/Demos & Showcases.jpg'},
+  {kind: 'resourceCategory', id: 'resource-telegram-channels', slug: 'telegram-channels', title: 'Telegram Channels', subtitle: '16 tech and programming channels I follow',             thumbnail: 'assets/resources/Telegram Channels.png', orderRank: '0008'},
+  {kind: 'resourceCategory', id: 'resource-newsletters',       slug: 'newsletters',       title: 'Newsletters',       subtitle: 'Engineering, career, and system design newsletters',    thumbnail: 'assets/resources/Newsletters.jpg',       orderRank: '0009'},
+  {kind: 'resourceCategory', id: 'resource-portfolios-i-like', slug: 'portfolios-i-like', title: 'Portfolios I Like', subtitle: '29 developer portfolios and templates for inspiration', thumbnail: 'assets/resources/Portfolios I Like.jpg', orderRank: '0010'},
+  {kind: 'resourceCategory', id: 'resource-demos-showcases',   slug: 'demos-showcases',   title: 'Demos & Showcases', subtitle: 'Tahrirchi, Pythagora 2.0, TopKadr',                     thumbnail: 'assets/resources/Demos & Showcases.jpg', orderRank: '0011'},
 ]
 
 registerSeeder({
@@ -127,14 +131,39 @@ registerSeeder({
           orderRank: s.orderRank,
         }).commit()
       } else {
-        // Categories with detail pages: createIfNotExists + patch so any items/sections
-        // the user has authored in the Studio are preserved.
+        // Categories with detail pages: createIfNotExists + patch so any
+        // items/sections the user has authored in Studio are preserved.
         await client.createIfNotExists({
           _id: s.id,
           _type: 'resourceCategory',
           title: s.title,
           slug: {_type: 'slug', current: s.slug},
         })
+
+        // One-time legacy migration: the schema used to allow either a
+        // single section (sectionLabel + items[]) or multi-section
+        // (sections[]). Now only sections[] is allowed. Fold the legacy
+        // shape into a single sections[] entry on first encounter; later
+        // re-runs are no-ops (the legacy fields no longer exist on the
+        // doc after the first migration).
+        const existing = (await client.getDocument(s.id)) as any
+        const legacyLabel: string | undefined = existing?.sectionLabel
+        const legacyItems: unknown[] = Array.isArray(existing?.items) ? existing.items : []
+        const hasSections =
+          Array.isArray(existing?.sections) && existing.sections.length > 0
+        const sectionsPatch =
+          legacyLabel && legacyItems.length > 0 && !hasSections
+            ? {
+                sections: [
+                  {
+                    _key: key(),
+                    label: legacyLabel,
+                    items: legacyItems,
+                  },
+                ],
+              }
+            : {}
+
         await client
           .patch(s.id)
           .set({
@@ -142,8 +171,16 @@ registerSeeder({
             slug: {_type: 'slug', current: s.slug},
             subtitle: s.subtitle,
             thumbnail: imageRef(assetId),
+            orderRank: s.orderRank,
+            ...sectionsPatch,
           })
-          .unset(['externalUrl', 'gradientFrom', 'gradientTo'])
+          .unset([
+            'externalUrl',
+            'gradientFrom',
+            'gradientTo',
+            'sectionLabel',
+            'items',
+          ])
           .commit()
       }
 

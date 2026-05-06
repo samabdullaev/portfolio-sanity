@@ -9,9 +9,8 @@ registerSeeder({
       _type: 'mentorshipArticle',
       title: "Universitetingizni qanchalik yaxshi bilasiz?",
       task: "Task 1",
-      date: "Mar 18, 2026",
+      date: "2026-03-18",
       externalUrl: "https://publink.uz/education/universitetingizni-qanchalik-yaxshi-bilasiz",
-      order: 1,
     })
     console.log('     Created mentorship article')
   },
