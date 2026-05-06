@@ -16,6 +16,9 @@ import './certificate-issuers.seeder.js'
 import './mentorship.seeder.js'
 import './singletons.seeder.js'
 import './images.seeder.js'
+// gallery-images runs after images.seeder so the gallery items (created
+// in projects.seeder + travel.seeder) exist on the docs being patched.
+import './gallery-images.seeder.js'
 import './resource-images.seeder.js'
 import './resource-topics.seeder.js'
 

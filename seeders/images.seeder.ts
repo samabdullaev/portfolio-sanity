@@ -175,18 +175,11 @@ registerSeeder({
       throw new Error('unreachable')
     }
 
-    // Projects
+    // Projects (thumbnail only — gallery image slots are populated by
+    // the gallery-images seeder which uses dedicated AI mockups).
     for (const [id, path] of projectImages) {
       const assetId = await upload(path)
       await client.patch(id).set({thumbnail: imageRef(assetId)}).commit()
-      // Populate image-type gallery items with the same thumbnail
-      const doc = await client.getDocument(id) as any
-      if (doc?.gallery?.length) {
-        const updatedGallery = doc.gallery.map((item: any) =>
-          item.type === 'image' ? { ...item, image: imageRef(assetId) } : item
-        )
-        await client.patch(id).set({ gallery: updatedGallery }).commit()
-      }
       await delay()
     }
     console.log(`     Uploaded ${projectImages.length} project thumbnails`)
@@ -199,7 +192,8 @@ registerSeeder({
     }
     console.log(`     Uploaded ${blogImages.length} blog article thumbnails`)
 
-    // Travel destinations
+    // Travel destinations (thumbnail only — gallery image slots populated
+    // by the gallery-images seeder).
     for (const [id, path] of travelImages) {
       const assetId = await upload(path)
       await client.patch(id).set({thumbnail: imageRef(assetId)}).commit()
@@ -244,17 +238,6 @@ registerSeeder({
         : certImages.some(([cid]) => cid === id) ? ['image']
         : ['thumbnail']
       await client.patch(id).unset(fields).commit()
-    }
-    // Clear gallery images for projects
-    for (const [id] of projectImages) {
-      const doc = await client.getDocument(id) as any
-      if (doc?.gallery?.length) {
-        const updatedGallery = doc.gallery.map((item: any) => {
-          const {image, ...rest} = item
-          return rest
-        })
-        await client.patch(id).set({ gallery: updatedGallery }).commit()
-      }
     }
   },
 })
