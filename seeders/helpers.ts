@@ -3,20 +3,32 @@ import {readFileSync} from 'fs'
 import {resolve} from 'path'
 import {randomBytes} from 'crypto'
 
-// Read token from .env
+// Read configuration from .env. We parse the file directly rather than
+// using dotenv to avoid the dependency for a 3-line read. Project ID and
+// dataset are intentionally surfaced via env (not hardcoded) so the same
+// seeders can target multiple datasets and so a public-repo forker can
+// point at their own Sanity project.
 const envPath = resolve(__dirname, '../.env')
-let token = ''
+const env: Record<string, string> = {}
 try {
-  const env = readFileSync(envPath, 'utf8')
-  const match = env.match(/SANITY_TOKEN=(.+)/)
-  if (match) token = match[1].trim()
+  const raw = readFileSync(envPath, 'utf8')
+  for (const line of raw.split('\n')) {
+    const m = line.match(/^([A-Z_]+)=(.+)$/)
+    if (m) env[m[1]] = m[2].trim()
+  }
 } catch {}
 
+const token = env.SANITY_TOKEN
+const projectId = env.SANITY_STUDIO_PROJECT_ID
+const dataset = env.SANITY_STUDIO_DATASET
+
 export function getClient(): SanityClient {
-  if (!token) throw new Error('SANITY_TOKEN not found in sanity/.env')
+  if (!projectId) throw new Error('SANITY_STUDIO_PROJECT_ID not found in .env')
+  if (!dataset) throw new Error('SANITY_STUDIO_DATASET not found in .env')
+  if (!token) throw new Error('SANITY_TOKEN not found in .env')
   return createClient({
-    projectId: 'p43tljnq',
-    dataset: 'production',
+    projectId,
+    dataset,
     apiVersion: '2024-01-01',
     token,
     useCdn: false,
