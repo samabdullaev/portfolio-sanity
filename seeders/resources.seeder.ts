@@ -33,7 +33,6 @@ const specs: Spec[] = [
   {kind: 'resource', id: 'resource-whimsical',     slug: 'whimsical',     title: 'Whimsical',     subtitle: 'Collaborative whiteboard app', thumbnail: 'assets/resources/Whimsical.jpg',     externalUrl: 'https://whimsical.com/'},
 
   // Apps
-  {kind: 'resource', id: 'resource-quran-com',   slug: 'quran-com',   title: 'Quran.com',   subtitle: 'Quran Recitation',       thumbnail: 'assets/resources/Quran.com.jpg',   externalUrl: 'https://quran.com/'},
   {kind: 'resource', id: 'resource-cleve-ai',    slug: 'cleve-ai',    title: 'Cleve.ai',    subtitle: 'LinkedIn Summarization', thumbnail: 'assets/resources/Cleve.ai.png',    externalUrl: 'http://cleve.ai/'},
   {kind: 'resource', id: 'resource-git-wrapped', slug: 'git-wrapped', title: 'Git-Wrapped', subtitle: 'GitHub Summarization',   thumbnail: 'assets/resources/Git-Wrapped.jpg', externalUrl: 'https://git-wrapped.com/'},
   {kind: 'resource', id: 'resource-ticktick',    slug: 'ticktick',    title: 'TickTick',    subtitle: 'To-do app',              thumbnail: 'assets/resources/TickTick.jpg',    externalUrl: 'https://ticktick.com/'},

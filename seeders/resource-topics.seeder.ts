@@ -29,7 +29,7 @@ const topics: TopicSpec[] = [
     slug: 'apps',
     logo: 'assets/resource-topics/apps.jpg',
     orderRank: '0002',
-    itemIds: ['resource-quran-com', 'resource-cleve-ai', 'resource-git-wrapped', 'resource-ticktick', 'resource-carbon'],
+    itemIds: ['resource-cleve-ai', 'resource-git-wrapped', 'resource-ticktick', 'resource-carbon'],
   },
   {
     id: 'topic-saas',
