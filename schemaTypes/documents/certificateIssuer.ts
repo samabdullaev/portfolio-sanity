@@ -1,10 +1,11 @@
 import {defineType, defineField} from 'sanity'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
   name: 'certificateIssuer',
   title: 'Certificate Issuer',
   type: 'document',
-  description: 'A source that issued one or more certificates (e.g. Coursera, CS50, HackerRank). Used as a filter card on the Certificates hub.',
+  description: 'A source that issued one or more certificates (e.g. Coursera, CS50, HackerRank). Used as a filter card on the Certificates hub. The certificates that belong to this issuer are listed in the `certificates[]` array — drag to reorder.',
   fields: [
     defineField({
       name: 'name',
@@ -29,12 +30,14 @@ export default defineType({
       description: 'Square brand logo or thumbnail shown on the filter card.',
     }),
     defineField({
-      name: 'order',
-      title: 'Order',
-      type: 'number',
-      description: 'Manual ordering for the filter row.',
+      name: 'certificates',
+      title: 'Certificates',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'certificate'}]}],
+      description: 'Certificates issued by this organization, in display order. Drag to reorder.',
     }),
+    orderRankField({type: 'certificateIssuer'}),
   ],
-  orderings: [{title: 'Order', name: 'order', by: [{field: 'order', direction: 'asc'}]}],
+  orderings: [orderRankOrdering],
   preview: {select: {title: 'name', media: 'logo'}},
 })

@@ -12,6 +12,9 @@ interface BaseSpec {
 interface ExternalSpec extends BaseSpec {
   kind: 'resource'
   externalUrl: string
+  // Drag-orderable in Studio via @sanity/orderable-document-list. Used by the
+  // "All Resources" desk list. The website renders by topic.items[] order.
+  orderRank: string
 }
 
 interface CategorySpec extends BaseSpec {
@@ -23,39 +26,39 @@ type Spec = ExternalSpec | CategorySpec
 // 23 external resources + 11 categories with detail pages.
 const specs: Spec[] = [
   // Tools
-  {kind: 'resource', id: 'resource-postspark',     slug: 'postspark',     title: 'PostSpark',     subtitle: 'Image Summarization',          thumbnail: 'assets/resources/PostSpark.jpg',     externalUrl: 'https://postspark.app/'},
-  {kind: 'resource', id: 'resource-screen-studio', slug: 'screen-studio', title: 'Screen Studio', subtitle: 'Screen Recorder',              thumbnail: 'assets/resources/Screen Studio.jpg', externalUrl: 'https://screen.studio/'},
-  {kind: 'resource', id: 'resource-howdygo',       slug: 'howdygo',       title: 'HowdyGo',       subtitle: 'Scrolling Website Generator',  thumbnail: 'assets/resources/HowdyGo.jpg',       externalUrl: 'https://www.howdygo.com/free-tools/scrolling-website-video-generator'},
-  {kind: 'resource', id: 'resource-whimsical',     slug: 'whimsical',     title: 'Whimsical',     subtitle: 'Collaborative whiteboard app', thumbnail: 'assets/resources/Whimsical.jpg',     externalUrl: 'https://whimsical.com/'},
+  {kind: 'resource', id: 'resource-postspark',     slug: 'postspark',     title: 'PostSpark',     subtitle: 'Image Summarization',          thumbnail: 'assets/resources/PostSpark.jpg',     externalUrl: 'https://postspark.app/', orderRank: '0001'},
+  {kind: 'resource', id: 'resource-screen-studio', slug: 'screen-studio', title: 'Screen Studio', subtitle: 'Screen Recorder',              thumbnail: 'assets/resources/Screen Studio.jpg', externalUrl: 'https://screen.studio/', orderRank: '0002'},
+  {kind: 'resource', id: 'resource-howdygo',       slug: 'howdygo',       title: 'HowdyGo',       subtitle: 'Scrolling Website Generator',  thumbnail: 'assets/resources/HowdyGo.jpg',       externalUrl: 'https://www.howdygo.com/free-tools/scrolling-website-video-generator', orderRank: '0003'},
+  {kind: 'resource', id: 'resource-whimsical',     slug: 'whimsical',     title: 'Whimsical',     subtitle: 'Collaborative whiteboard app', thumbnail: 'assets/resources/Whimsical.jpg',     externalUrl: 'https://whimsical.com/', orderRank: '0004'},
 
   // Apps
-  {kind: 'resource', id: 'resource-quran-com',   slug: 'quran-com',   title: 'Quran.com',   subtitle: 'Quran Recitation',       thumbnail: 'assets/resources/Quran.com.jpg',   externalUrl: 'https://quran.com/'},
-  {kind: 'resource', id: 'resource-cleve-ai',    slug: 'cleve-ai',    title: 'Cleve.ai',    subtitle: 'LinkedIn Summarization', thumbnail: 'assets/resources/Cleve.ai.png',    externalUrl: 'http://cleve.ai/'},
-  {kind: 'resource', id: 'resource-git-wrapped', slug: 'git-wrapped', title: 'Git-Wrapped', subtitle: 'GitHub Summarization',   thumbnail: 'assets/resources/Git-Wrapped.jpg', externalUrl: 'https://git-wrapped.com/'},
-  {kind: 'resource', id: 'resource-ticktick',    slug: 'ticktick',    title: 'TickTick',    subtitle: 'To-do app',              thumbnail: 'assets/resources/TickTick.jpg',    externalUrl: 'https://ticktick.com/'},
-  {kind: 'resource', id: 'resource-carbon',      slug: 'carbon',      title: 'Carbon',      subtitle: 'Code Image',             thumbnail: 'assets/resources/Carbon.png',      externalUrl: 'https://carbon.now.sh/'},
+  {kind: 'resource', id: 'resource-quran-com',   slug: 'quran-com',   title: 'Quran.com',   subtitle: 'Quran Recitation',       thumbnail: 'assets/resources/Quran.com.jpg',   externalUrl: 'https://quran.com/', orderRank: '0005'},
+  {kind: 'resource', id: 'resource-cleve-ai',    slug: 'cleve-ai',    title: 'Cleve.ai',    subtitle: 'LinkedIn Summarization', thumbnail: 'assets/resources/Cleve.ai.png',    externalUrl: 'http://cleve.ai/', orderRank: '0006'},
+  {kind: 'resource', id: 'resource-git-wrapped', slug: 'git-wrapped', title: 'Git-Wrapped', subtitle: 'GitHub Summarization',   thumbnail: 'assets/resources/Git-Wrapped.jpg', externalUrl: 'https://git-wrapped.com/', orderRank: '0007'},
+  {kind: 'resource', id: 'resource-ticktick',    slug: 'ticktick',    title: 'TickTick',    subtitle: 'To-do app',              thumbnail: 'assets/resources/TickTick.jpg',    externalUrl: 'https://ticktick.com/', orderRank: '0008'},
+  {kind: 'resource', id: 'resource-carbon',      slug: 'carbon',      title: 'Carbon',      subtitle: 'Code Image',             thumbnail: 'assets/resources/Carbon.png',      externalUrl: 'https://carbon.now.sh/', orderRank: '0009'},
 
   // SaaS
-  {kind: 'resource', id: 'resource-featurebase', slug: 'featurebase', title: 'Featurebase', subtitle: 'Changelog & Roadmap', thumbnail: 'assets/resources/Featurebase.jpg', externalUrl: 'https://www.featurebase.app/'},
-  {kind: 'resource', id: 'resource-mintlify',    slug: 'mintlify',    title: 'Mintlify',    subtitle: 'Documentation',       thumbnail: 'assets/resources/Mintlify.jpg',    externalUrl: 'https://mintlify.com/'},
+  {kind: 'resource', id: 'resource-featurebase', slug: 'featurebase', title: 'Featurebase', subtitle: 'Changelog & Roadmap', thumbnail: 'assets/resources/Featurebase.jpg', externalUrl: 'https://www.featurebase.app/', orderRank: '0010'},
+  {kind: 'resource', id: 'resource-mintlify',    slug: 'mintlify',    title: 'Mintlify',    subtitle: 'Documentation',       thumbnail: 'assets/resources/Mintlify.jpg',    externalUrl: 'https://mintlify.com/', orderRank: '0011'},
 
   // UI Libraries
-  {kind: 'resource', id: 'resource-shadcn',     slug: 'shadcn',     title: 'Shadcn',     subtitle: 'UI component library', thumbnail: 'assets/resources/Shadcn.jpg',    externalUrl: 'https://ui.shadcn.com/'},
-  {kind: 'resource', id: 'resource-magic-ui',   slug: 'magic-ui',   title: 'Magic UI',   subtitle: 'UI component library', thumbnail: 'assets/resources/Magic UI.jpg',  externalUrl: 'https://magicui.design/'},
-  {kind: 'resource', id: 'resource-aceternity', slug: 'aceternity', title: 'Aceternity', subtitle: 'UI component library', thumbnail: 'assets/resources/Aceternity.jpg', externalUrl: 'https://ui.aceternity.com/'},
-  {kind: 'resource', id: 'resource-21st-dev',   slug: '21st-dev',   title: '21st.dev',   subtitle: 'UI component library', thumbnail: 'assets/resources/21st.dev.jpg',  externalUrl: 'https://21st.dev/'},
-  {kind: 'resource', id: 'resource-ui-verse',   slug: 'ui-verse',   title: 'UI verse',   subtitle: 'UI component library', thumbnail: 'assets/resources/UI verse.jpg',  externalUrl: 'https://uiverse.io/'},
-  {kind: 'resource', id: 'resource-reactbits',  slug: 'reactbits',  title: 'ReactBits',  subtitle: 'Animations',           thumbnail: 'assets/resources/ReactBits.jpg', externalUrl: 'https://reactbits.dev/'},
-  {kind: 'resource', id: 'resource-spline',     slug: 'spline',     title: 'Spline',     subtitle: 'Animations',           thumbnail: 'assets/resources/Spline.jpg',    externalUrl: 'https://spline.design/'},
+  {kind: 'resource', id: 'resource-shadcn',     slug: 'shadcn',     title: 'Shadcn',     subtitle: 'UI component library', thumbnail: 'assets/resources/Shadcn.jpg',    externalUrl: 'https://ui.shadcn.com/', orderRank: '0012'},
+  {kind: 'resource', id: 'resource-magic-ui',   slug: 'magic-ui',   title: 'Magic UI',   subtitle: 'UI component library', thumbnail: 'assets/resources/Magic UI.jpg',  externalUrl: 'https://magicui.design/', orderRank: '0013'},
+  {kind: 'resource', id: 'resource-aceternity', slug: 'aceternity', title: 'Aceternity', subtitle: 'UI component library', thumbnail: 'assets/resources/Aceternity.jpg', externalUrl: 'https://ui.aceternity.com/', orderRank: '0014'},
+  {kind: 'resource', id: 'resource-21st-dev',   slug: '21st-dev',   title: '21st.dev',   subtitle: 'UI component library', thumbnail: 'assets/resources/21st.dev.jpg',  externalUrl: 'https://21st.dev/', orderRank: '0015'},
+  {kind: 'resource', id: 'resource-ui-verse',   slug: 'ui-verse',   title: 'UI verse',   subtitle: 'UI component library', thumbnail: 'assets/resources/UI verse.jpg',  externalUrl: 'https://uiverse.io/', orderRank: '0016'},
+  {kind: 'resource', id: 'resource-reactbits',  slug: 'reactbits',  title: 'ReactBits',  subtitle: 'Animations',           thumbnail: 'assets/resources/ReactBits.jpg', externalUrl: 'https://reactbits.dev/', orderRank: '0017'},
+  {kind: 'resource', id: 'resource-spline',     slug: 'spline',     title: 'Spline',     subtitle: 'Animations',           thumbnail: 'assets/resources/Spline.jpg',    externalUrl: 'https://spline.design/', orderRank: '0018'},
 
   // Dev Platforms
-  {kind: 'resource', id: 'resource-v0',      slug: 'v0',      title: 'v0',      subtitle: 'AI-powered UI generation', thumbnail: 'assets/resources/v0.jpg',      externalUrl: 'https://v0.dev/'},
-  {kind: 'resource', id: 'resource-bolt',    slug: 'bolt',    title: 'Bolt',    subtitle: 'AI-powered development',   thumbnail: 'assets/resources/Bolt.jpg',    externalUrl: 'https://bolt.new/'},
-  {kind: 'resource', id: 'resource-lovable', slug: 'lovable', title: 'Lovable', subtitle: 'AI-powered development',   thumbnail: 'assets/resources/Lovable.jpg', externalUrl: 'https://lovable.dev/'},
+  {kind: 'resource', id: 'resource-v0',      slug: 'v0',      title: 'v0',      subtitle: 'AI-powered UI generation', thumbnail: 'assets/resources/v0.jpg',      externalUrl: 'https://v0.dev/', orderRank: '0019'},
+  {kind: 'resource', id: 'resource-bolt',    slug: 'bolt',    title: 'Bolt',    subtitle: 'AI-powered development',   thumbnail: 'assets/resources/Bolt.jpg',    externalUrl: 'https://bolt.new/', orderRank: '0020'},
+  {kind: 'resource', id: 'resource-lovable', slug: 'lovable', title: 'Lovable', subtitle: 'AI-powered development',   thumbnail: 'assets/resources/Lovable.jpg', externalUrl: 'https://lovable.dev/', orderRank: '0021'},
 
   // No-code Tools
-  {kind: 'resource', id: 'resource-framer', slug: 'framer', title: 'Framer', subtitle: 'No-code website builder', thumbnail: 'assets/resources/Framer.jpg', externalUrl: 'https://www.framer.com/'},
-  {kind: 'resource', id: 'resource-canva',  slug: 'canva',  title: 'Canva',  subtitle: 'AI Code Generator',       thumbnail: 'assets/resources/Canva.jpg',  externalUrl: 'https://www.canva.com/ai-code-generator/'},
+  {kind: 'resource', id: 'resource-framer', slug: 'framer', title: 'Framer', subtitle: 'No-code website builder', thumbnail: 'assets/resources/Framer.jpg', externalUrl: 'https://www.framer.com/', orderRank: '0022'},
+  {kind: 'resource', id: 'resource-canva',  slug: 'canva',  title: 'Canva',  subtitle: 'AI Code Generator',       thumbnail: 'assets/resources/Canva.jpg',  externalUrl: 'https://www.canva.com/ai-code-generator/', orderRank: '0023'},
 
   // Categories with detail pages (Playbooks)
   {kind: 'resourceCategory', id: 'resource-interview-prep',     slug: 'interview-prep',     title: 'Interview Prep',     subtitle: 'NeetCode, GreatFrontEnd, Algochurn, and more',     thumbnail: 'assets/resources/Interview Prep.jpg'},
@@ -121,6 +124,7 @@ registerSeeder({
           subtitle: s.subtitle,
           thumbnail: imageRef(assetId),
           externalUrl: s.externalUrl,
+          orderRank: s.orderRank,
         }).commit()
       } else {
         // Categories with detail pages: createIfNotExists + patch so any items/sections

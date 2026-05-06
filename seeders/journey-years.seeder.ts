@@ -5,14 +5,18 @@ interface YearSpec {
   id: string
   year: number
   logo: string
+  orderRank: string
 }
 
 // Newest first — matches how the Journey hub renders the row (descending years).
+// orderRank values are simple zero-padded strings; the orderable plugin sorts
+// them lexicographically and assigns new ranks between adjacent strings as
+// the user drags items in Studio.
 const years: YearSpec[] = [
-  {id: 'journey-year-2026', year: 2026, logo: 'assets/journey-years/2026.svg'},
-  {id: 'journey-year-2025', year: 2025, logo: 'assets/journey-years/2025.svg'},
-  {id: 'journey-year-2024', year: 2024, logo: 'assets/journey-years/2024.svg'},
-  {id: 'journey-year-2023', year: 2023, logo: 'assets/journey-years/2023.svg'},
+  {id: 'journey-year-2026', year: 2026, logo: 'assets/journey-years/2026.jpg', orderRank: '0001'},
+  {id: 'journey-year-2025', year: 2025, logo: 'assets/journey-years/2025.jpg', orderRank: '0002'},
+  {id: 'journey-year-2024', year: 2024, logo: 'assets/journey-years/2024.jpg', orderRank: '0003'},
+  {id: 'journey-year-2023', year: 2023, logo: 'assets/journey-years/2023.jpg', orderRank: '0004'},
 ]
 
 registerSeeder({
@@ -32,7 +36,7 @@ registerSeeder({
       throw new Error('unreachable')
     }
 
-    for (const [i, y] of years.entries()) {
+    for (const y of years) {
       const logoAssetId = await upload(y.logo)
       await client.createOrReplace({
         _id: y.id,
@@ -40,7 +44,7 @@ registerSeeder({
         year: y.year,
         slug: {_type: 'slug', current: String(y.year)},
         logo: imageRef(logoAssetId),
-        order: i + 1,
+        orderRank: y.orderRank,
       })
       console.log(`     Created journeyYear: ${y.year}`)
       await delay()

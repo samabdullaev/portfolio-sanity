@@ -1,9 +1,11 @@
 import {defineType, defineField, defineArrayMember} from 'sanity'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
   name: 'travelDestination',
   title: 'Travel Destination',
   type: 'document',
+  description: 'A travel destination (country or guide page). Drag to reorder in Studio — the website renders them in this order.',
   fields: [
     defineField({name: 'title', title: 'Title', type: 'string', validation: (r) => r.required()}),
     defineField({name: 'slug', title: 'Slug', type: 'slug', options: {source: 'title'}, validation: (r) => r.required()}),
@@ -78,8 +80,8 @@ export default defineType({
         preview: {select: {title: 'title'}},
       })],
     }),
-    defineField({name: 'order', title: 'Order', type: 'number'}),
+    orderRankField({type: 'travelDestination'}),
   ],
-  orderings: [{title: 'Order', name: 'order', by: [{field: 'order', direction: 'asc'}]}],
+  orderings: [orderRankOrdering],
   preview: {select: {title: 'title', media: 'thumbnail'}},
 })

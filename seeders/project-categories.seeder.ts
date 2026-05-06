@@ -1,4 +1,4 @@
-import {registerSeeder, uploadImage, imageRef} from './helpers.js'
+import {registerSeeder, key, uploadImage, imageRef} from './helpers.js'
 import type {SanityClient} from '@sanity/client'
 
 interface CategorySpec {
@@ -6,14 +6,51 @@ interface CategorySpec {
   title: string
   slug: string
   logo: string
+  orderRank: string
+  // Project _ids in display order. The website renders project cards by
+  // iterating each category's projects[] in this order; categories themselves
+  // sort by orderRank.
+  projectIds: string[]
 }
 
-// Slug must match the project's `category` field value (the existing string enum
-// on the project schema). The Projects hub joins by this string.
 const categories: CategorySpec[] = [
-  {id: 'project-category-personal',  title: 'Personal',  slug: 'personal',  logo: 'assets/project-categories/personal.svg'},
-  {id: 'project-category-freelance', title: 'Freelance', slug: 'freelance', logo: 'assets/project-categories/freelance.svg'},
-  {id: 'project-category-hackathon', title: 'Hackathon', slug: 'hackathon', logo: 'assets/project-categories/hackathon.svg'},
+  {
+    id: 'project-category-personal',
+    title: 'Personal',
+    slug: 'personal',
+    logo: 'assets/project-categories/personal.jpg',
+    orderRank: '0001',
+    projectIds: [
+      'project-codemaster',
+      'project-subject-test-platform',
+      'project-smart-resume-matcher',
+      'project-allmaths',
+    ],
+  },
+  {
+    id: 'project-category-freelance',
+    title: 'Freelance',
+    slug: 'freelance',
+    logo: 'assets/project-categories/freelance.jpg',
+    orderRank: '0002',
+    projectIds: [
+      'project-al-khorezmi',
+      'project-shirina',
+      'project-actyble',
+      'project-soffin',
+      'project-4miles',
+      'project-kinaie-ecom',
+      'project-kinaie-growth',
+    ],
+  },
+  {
+    id: 'project-category-hackathon',
+    title: 'Hackathon',
+    slug: 'hackathon',
+    logo: 'assets/project-categories/hackathon.jpg',
+    orderRank: '0003',
+    projectIds: ['project-joybormi', 'project-tech2', 'project-locus'],
+  },
 ]
 
 registerSeeder({
@@ -33,7 +70,7 @@ registerSeeder({
       throw new Error('unreachable')
     }
 
-    for (const [i, c] of categories.entries()) {
+    for (const c of categories) {
       const logoAssetId = await upload(c.logo)
       await client.createOrReplace({
         _id: c.id,
@@ -41,9 +78,14 @@ registerSeeder({
         title: c.title,
         slug: {_type: 'slug', current: c.slug},
         logo: imageRef(logoAssetId),
-        order: i + 1,
+        orderRank: c.orderRank,
+        projects: c.projectIds.map((pid) => ({
+          _key: key(),
+          _type: 'reference',
+          _ref: pid,
+        })),
       })
-      console.log(`     Created projectCategory: ${c.title}`)
+      console.log(`     Created projectCategory: ${c.title} (${c.projectIds.length} projects)`)
       await delay()
     }
   },

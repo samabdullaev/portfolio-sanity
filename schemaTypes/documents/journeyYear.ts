@@ -1,10 +1,11 @@
 import {defineType, defineField} from 'sanity'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
   name: 'journeyYear',
   title: 'Journey Year',
   type: 'document',
-  description: 'A year (2023, 2024, …) used as a filter card on the Journey hub. Holds the year-specific logo and ordering. Journey updates are matched by their `year` field.',
+  description: 'A year (2023, 2024, …) used as a filter card on the Journey hub. Holds the year-specific logo. Journey updates are matched by their `year` field.',
   fields: [
     defineField({
       name: 'year',
@@ -28,8 +29,8 @@ export default defineType({
       validation: (r) => r.required(),
       description: 'Square thumbnail shown on the filter card.',
     }),
-    defineField({name: 'order', title: 'Order', type: 'number'}),
+    orderRankField({type: 'journeyYear'}),
   ],
-  orderings: [{title: 'Order', name: 'order', by: [{field: 'order', direction: 'asc'}]}],
+  orderings: [orderRankOrdering],
   preview: {select: {title: 'year', media: 'logo'}},
 })

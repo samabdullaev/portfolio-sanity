@@ -9,8 +9,10 @@ import './blog.seeder.js'
 import './blog-series-images.seeder.js'
 import './journey.seeder.js'
 import './journey-years.seeder.js'
-import './certificate-issuers.seeder.js'
+// certificates must register before certificate-issuers because issuers now
+// reference cert IDs in their `certificates[]` containment array.
 import './certificates.seeder.js'
+import './certificate-issuers.seeder.js'
 import './mentorship.seeder.js'
 import './singletons.seeder.js'
 import './images.seeder.js'

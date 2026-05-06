@@ -8,14 +8,14 @@ interface SeriesSpec {
 }
 
 // Each series gets a compact `shortTitle` (used as the filter card label) and a
-// `logo` (filter card thumbnail). Existing series fields (title, slug, articles,
-// order) are preserved by patching only — articles' thumbnails uploaded by
-// images.seeder are untouched.
+// `logo` (filter card thumbnail). Logos are the AI-generated isometric icons
+// downloaded from Sanity's image CDN as JPEGs; their filenames match each
+// series's slug.
 const series: SeriesSpec[] = [
-  {id: 'blog-series-0', shortTitle: 'SvelteKit + Sanity', logo: 'assets/blog-series/sveltekit-sanity.svg'},
-  {id: 'blog-series-1', shortTitle: 'Study Abroad',       logo: 'assets/blog-series/study-abroad.svg'},
-  {id: 'blog-series-2', shortTitle: 'Pro Dev',            logo: 'assets/blog-series/professional-dev.svg'},
-  {id: 'blog-series-3', shortTitle: 'UK Guide',           logo: 'assets/blog-series/uk-guide.svg'},
+  {id: 'blog-series-0', shortTitle: 'SvelteKit + Sanity', logo: 'assets/blog-series/concept-to-launch-sveltekit-sanity.jpg'},
+  {id: 'blog-series-1', shortTitle: 'Study Abroad',       logo: 'assets/blog-series/study-abroad-uk-to-canada.jpg'},
+  {id: 'blog-series-2', shortTitle: 'Pro Dev',            logo: 'assets/blog-series/professional-development-guide.jpg'},
+  {id: 'blog-series-3', shortTitle: 'UK Guide',           logo: 'assets/blog-series/studying-in-the-uk.jpg'},
 ]
 
 registerSeeder({

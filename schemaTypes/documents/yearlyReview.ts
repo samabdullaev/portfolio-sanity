@@ -57,5 +57,9 @@ export default defineType({
       })],
     }),
   ],
+  // Studio default sort: newest year first. No D&D — year is the natural key.
+  orderings: [
+    {title: 'Year, newest first', name: 'yearDesc', by: [{field: 'year', direction: 'desc'}]},
+  ],
   preview: {select: {title: 'year', media: 'thumbnail'}},
 })

@@ -1,4 +1,5 @@
 import {defineType, defineField} from 'sanity'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
   name: 'resourceTopic',
@@ -27,15 +28,15 @@ export default defineType({
       type: 'image',
       description: 'Square thumbnail shown on the filter card on the Resources hub.',
     }),
-    defineField({name: 'order', title: 'Order', type: 'number'}),
     defineField({
       name: 'items',
       title: 'Items',
       type: 'array',
       of: [{type: 'reference', to: [{type: 'resource'}, {type: 'resourceCategory'}]}],
-      description: 'Cards shown under this topic on the hub. Pick a Resource (external link) or a Resource Category (detail page).',
+      description: 'Cards shown under this topic on the hub. Pick a Resource (external link) or a Resource Category (detail page). Drag to reorder.',
     }),
+    orderRankField({type: 'resourceTopic'}),
   ],
-  orderings: [{title: 'Order', name: 'order', by: [{field: 'order', direction: 'asc'}]}],
+  orderings: [orderRankOrdering],
   preview: {select: {title: 'title', media: 'logo'}},
 })

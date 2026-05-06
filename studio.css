@@ -1,0 +1,29 @@
+/* Studio-wide style overrides.
+ * Loaded once via sanity.config.ts so it's applied to the Studio shell.
+ *
+ * The @sanity/orderable-document-list plugin renders its drag-and-drop
+ * UI inside a custom `S.component()` pane. That pane gets Sanity's
+ * default `flex: 1 1 0%` inline style, which makes it grow to fill
+ * available horizontal space when no document is open in the next
+ * column — so it looks "full-screen" next to Sanity's default narrow
+ * document-list panes.
+ *
+ * Each orderable pane the plugin creates gets an id pattern of
+ * `{type}-orderable-{type}-{index}` (e.g. `projectCategory-orderable-
+ * projectCategory-0`). Targeting `[id*="orderable-"]` catches every
+ * pane the plugin renders without affecting any built-in list pane.
+ *
+ * `max-width: 350px` matches the visual width of Sanity's default
+ * document-list panes. The pane's existing inline `min-width: 320px`
+ * is kept (so the pane doesn't shrink below readable width on small
+ * screens).
+ *
+ * Scoped to `[data-ui="PaneLayout"]:not([data-collapsed])` so the
+ * width cap only applies on desktop. In mobile-collapsed mode Sanity
+ * shows one pane at a time (`data-collapsed=""` on the layout +
+ * `hidden=""` on inactive panes), so the visible pane should fill
+ * the screen — same behavior as the default DocumentListPane.
+ */
+[data-ui="PaneLayout"]:not([data-collapsed]) [data-testid="pane"][id*="orderable-"] {
+  max-width: 350px;
+}
