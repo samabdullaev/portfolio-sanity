@@ -7,6 +7,7 @@ import {
   ActivityIcon,
   BookIcon,
   BookmarkIcon,
+  BulbOutlineIcon,
   CodeIcon,
   CogIcon,
   EarthGlobeIcon,
@@ -184,6 +185,24 @@ export default defineConfig({
               .child(
                 S.documentTypeList('certificate')
                   .title('All Certificates')
+                  .defaultOrdering([{field: 'date', direction: 'desc'}]),
+              ),
+
+            // Courses — topics own their courses[] in display order; the
+            // flat list sorts by date desc like certificates.
+            orderableDocumentListDeskItem({
+              S,
+              context,
+              type: 'courseTopic',
+              title: 'Course Topics',
+              icon: BulbOutlineIcon,
+            }),
+            S.listItem()
+              .title('All Courses')
+              .icon(BulbOutlineIcon)
+              .child(
+                S.documentTypeList('course')
+                  .title('All Courses')
                   .defaultOrdering([{field: 'date', direction: 'desc'}]),
               ),
           ]),
