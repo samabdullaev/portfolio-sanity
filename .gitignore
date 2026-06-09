@@ -6,6 +6,10 @@ dist/
 .next/
 .sanity/
 
+# Seeder source assets — kept local only (large; live content lives in
+# Sanity's CDN). Restore from backup into seeders/assets/ to re-seed images.
+seeders/assets/
+
 # Environment
 .env
 .env.local
