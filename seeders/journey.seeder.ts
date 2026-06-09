@@ -5,6 +5,7 @@ import type {SanityClient} from '@sanity/client'
 // month, since the user publishes the monthly retrospective once the month
 // ends). Sort newest-first by date in Studio + on the website.
 const entries: {title: string; url: string; date: string}[] = [
+  {title: "May 2026: Craft",             url: "https://www.linkedin.com/pulse/may-2026-craft-sam-abdullaev-ezoge",             date: "2026-06-01"},
   {title: "April 2026: Iteration",       url: "https://www.linkedin.com/pulse/april-2026-iteration-sam-abdullaev-xjcre",         date: "2026-05-01"},
   {title: "March 2026: Networking",      url: "https://www.linkedin.com/pulse/march-2026-networking-sam-abdullaev-6djfe",        date: "2026-04-01"},
   {title: "February 2026: Interviews",   url: "https://www.linkedin.com/pulse/february-2026-interviews-sam-abdullaev-lqr5e",     date: "2026-03-01"},
