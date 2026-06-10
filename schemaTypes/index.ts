@@ -12,6 +12,9 @@ import certificate from './documents/certificate'
 import certificateIssuer from './documents/certificateIssuer'
 import course from './documents/course'
 import courseTopic from './documents/courseTopic'
+import application from './documents/application'
+import applicationStatus from './documents/applicationStatus'
+import platform from './documents/platform'
 import travelDestination from './documents/travelDestination'
 import yearlyReview from './documents/yearlyReview'
 import journeyUpdate from './documents/journeyUpdate'
@@ -24,5 +27,6 @@ export const schemaTypes = [
   homePage, aboutPage, siteSettings,
   project, projectCategory, blogSeries, blogArticle, resource, resourceCategory, resourceTopic, certificate, certificateIssuer, course, courseTopic,
   travelDestination, yearlyReview, journeyUpdate, journeyYear, mentorshipArticle,
+  application, applicationStatus, platform,
   galleryVideo, socialLink,
 ]

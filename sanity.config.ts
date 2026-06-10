@@ -8,6 +8,7 @@ import {
   BookIcon,
   BookmarkIcon,
   BulbOutlineIcon,
+  CaseIcon,
   CodeIcon,
   CogIcon,
   EarthGlobeIcon,
@@ -204,6 +205,32 @@ export default defineConfig({
                 S.documentTypeList('course')
                   .title('All Courses')
                   .defaultOrdering([{field: 'date', direction: 'desc'}]),
+              ),
+
+            // Applications — statuses are orderable (Board column order);
+            // applications are a flat list sorted by lastUpdated desc.
+            orderableDocumentListDeskItem({
+              S,
+              context,
+              type: 'applicationStatus',
+              title: 'Application Statuses',
+              icon: CaseIcon,
+            }),
+            S.listItem()
+              .title('All Applications')
+              .icon(CaseIcon)
+              .child(
+                S.documentTypeList('application')
+                  .title('All Applications')
+                  .defaultOrdering([{field: 'lastUpdated', direction: 'desc'}]),
+              ),
+            S.listItem()
+              .title('Platforms')
+              .icon(CaseIcon)
+              .child(
+                S.documentTypeList('platform')
+                  .title('Platforms')
+                  .defaultOrdering([{field: 'name', direction: 'asc'}]),
               ),
           ]),
     }),
